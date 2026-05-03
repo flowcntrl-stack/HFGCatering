@@ -3,7 +3,10 @@
   padding: 0;
   display: block;
   min-height: 520px;
-  background: rgba(255, 255, 255, 0.5);
+  background:
+    radial-gradient(circle at 78% 18%, rgba(255, 246, 218, 0.95), transparent 18rem),
+    radial-gradient(circle at 22% 42%, rgba(217, 200, 240, 0.7), transparent 16rem),
+    linear-gradient(135deg, rgba(207, 227, 210, 0.82), rgba(255, 253, 248, 0.88));
 }
 
 .hero-photo-card::before {
@@ -14,22 +17,53 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(255, 253, 248, 0.08), rgba(255, 253, 248, 0.01));
+  background:
+    linear-gradient(to top, rgba(255, 253, 248, 0.08), rgba(255, 253, 248, 0.01)),
+    radial-gradient(circle at 78% 20%, rgba(255, 255, 255, 0.68), transparent 14rem);
+  pointer-events: none;
 }
 
-.hero-founder-image {
-  width: 100%;
-  height: 100%;
-  min-height: 520px;
-  display: block;
-  object-fit: cover;
-  object-position: center;
+.hero-photo-fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.portrait-sunburst {
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  background:
+    linear-gradient(115deg, transparent 0 48%, rgba(255, 238, 183, 0.58) 50%, transparent 56%),
+    radial-gradient(circle at 80% 22%, rgba(255, 231, 166, 0.9), transparent 14rem),
+    radial-gradient(circle at 20% 55%, rgba(217, 200, 240, 0.72), transparent 18rem);
+  transform: rotate(-8deg);
+}
+
+.portrait-initials {
+  position: relative;
+  z-index: 1;
+  width: 170px;
+  height: 170px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.58);
+  color: var(--lavender-deep);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 3.3rem;
+  font-weight: 800;
+  box-shadow: 0 18px 48px rgba(47, 49, 51, 0.12);
+  backdrop-filter: blur(14px);
 }
 
 .hero-photo-caption {
   position: absolute;
   left: 24px;
   bottom: 24px;
+  z-index: 2;
   max-width: 310px;
   margin: 0;
   padding: 16px 18px;
@@ -42,20 +76,21 @@
 }
 
 @media (max-width: 900px) {
-  .hero-photo-card,
-  .hero-founder-image {
+  .hero-photo-card {
     min-height: 420px;
   }
 }
 
 @media (max-width: 620px) {
-  .hero-photo-card,
-  .hero-founder-image {
+  .hero-photo-card {
     min-height: 360px;
+    border-radius: 32px;
   }
 
-  .hero-photo-card {
-    border-radius: 32px;
+  .portrait-initials {
+    width: 132px;
+    height: 132px;
+    font-size: 2.5rem;
   }
 
   .hero-photo-caption {
